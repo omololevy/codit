@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+<!-- Styles block -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700i" rel="stylesheet">
+{% endblock %}
+
+<!-- Content block -->
+{% block content %}
+<!-- Card -->
+<div class="card card-image" style="background-image: url(https://images.pexels.com/photos/1591060/pexels-photo-1591060.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500); background-size: 100% 100%; ">
+
+
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h1 style="font-size:100px;font-family: 'Montserrat', sans-serif;">CODIT</h1>
+      <h3 class="card-title pt-2"><strong>WHERE GREAT DEVELOPERS EMERGE</strong></h3>
+      <p style="margin-bottom:5%">Post that bug and get it solved by great developers determined to change how the world is programmed</p>
+      <a style="margin-bottom:10.8%" class="btn btn-green darken-2" href="/about" ><i class="fas fa-clone left"></i>About</a>
+      <a style="margin-bottom:10.8%" class="btn btn-green darken-2" href="/category/html" ><i class="fas fa-clone left"></i>Languages</a>
+
+    </div>
+  </div>
+
+</div>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small light-green darken-2">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright:
+    <a href="https://mdbootstrap.com/education/bootstrap/"> Codit</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+  <!-- Card -->
+{% endblock%}
+
