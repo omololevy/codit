@@ -42,6 +42,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     comment = db.Column(db.String)
     posted_c = db.Column(db.DateTime,default=datetime.utcnow)
+    votes = db.relationship('Vote', backref='comment', lazy='dynamic')
     post_id = db.Column(db.Integer, db.ForeignKey("posts.id"), nullable=False)
     user_c = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     
@@ -77,10 +78,11 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
+    profile = db.Column(db.String(255))
     user_post = db.relationship('Post', backref='user', lazy='dynamic')
     user_comment = db.relationship('Comment', backref='user', lazy='dynamic')
     stars = db.relationship('Star', backref='user', lazy='dynamic')
-
+    votes = db.relationship('Vote', backref = 'user', lazy = 'dynamic')
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -135,3 +137,32 @@ class Star(db.Model):
 
     def __repr__(self):
         return f'{self.user_id}:{self.post_id}'
+
+class Vote(db.Model):
+    __tablename__ = 'votes'
+
+    id = db.Column(db.Integer, primary_key=True)
+    vote = db.Column(db.Integer, default=1)
+    post_id = db.Column(db.Integer, db.ForeignKey('comments.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def save_votes(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def add_votes(cls, id):
+        vote_comment = Vote(comment_id=id)
+        vote_comment.save_votes()
+
+    @classmethod
+    def get_votes(cls, id):
+        vote = Vote.query.filter_by(comment_id=id).all()
+        return vote
+
+    @classmethod
+    def get_all_votes(cls, comment_id):
+        votes = Vote.query.order_by('id').all()
+        return votes
+
+    def __repr__(self):
+        return f'{self.user_id}:{self.comment_id}'
