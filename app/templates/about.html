@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+<!-- Styles block -->
+
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700i" rel="stylesheet">
+{% endblock %}
+
+<!-- Content block -->
+{% block content %}
+<div class="card card-image" style="background-image: url(https://www.mitinclusiveinnovation.com/wp-content/uploads/2019/01/Moringa-School_Logo.png); background-size: 100% 100%; ">
+
+
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h1 style="font-size:100px;font-family: 'Montserrat', sans-serif; margin-bottom:3%">CODIT!</h1>
+    <p style="font-size:18px"> HAVE YOU EVER THOUGHT O F HOW THE WORLD WOULD LOOK LIKE IF EVERY NICE IMAGINATION YOU HAVE EVER HAD WOULD BE BROUGHT TO REALITY. FOR EXAMPLE HUMANS HAVING WINGS TO FLY. WE, THE CODIT, BELIEVE THAT EVERY PROBLEM HAS A SOLUTION OR  EVERY VARIABLE HAS A VALUE AND THE VARIABLES HERE ARE THE IMAGINATIONS.</p>
+    <p style="font-size:18px"> CONVERT THE IMAGINATION TO REALITY.</p>
+    <a style="margin-bottom:12.4%" class="btn btn-blue darken-2" href="/" ><i class="fas fa-clone left"></i>Back Home</a>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small light-blue darken-2">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2021 Copyright: CODIT</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+  {% endblock %}
